@@ -5,15 +5,16 @@
 
 Double_t apply_resolution(double energy)
 {
-  const double p0 = 6.74969e-01;
-  const double p1 = 7.01927e-01;
-  const double p2 = 1.41488e-04;
+  const double p0 = 4.1745911313878965;
+  const double p1 = 0.7671902746016106;
+  const double p2 = 0.0001331342688070419;
 
   double fwhm = p0+p1*sqrt(energy + p2 * energy * energy);
 
   double sigma = fwhm/2.355;
 
   return gRandom->Gaus(energy,sigma);
+
 }
 
 void spectra(std::string filename, std::string outfilename="test.root")
@@ -33,8 +34,8 @@ void spectra(std::string filename, std::string outfilename="test.root")
 
   while( datareader.Next() )
   {
-    h_edep->Fill( apply_resolution(*data_energy) );
-    if(*data_energy>511*0.9999 and *data_energy < 1.0001*511) counts_pp++;
+    h_edep->Fill( *data_energy );
+    if(*data_energy>511*0.999 and *data_energy < 1.001*511) counts_pp++;
     counts++;
   }
 
@@ -48,8 +49,8 @@ void spectra(std::string filename, std::string outfilename="test.root")
   h_edep->GetXaxis()->SetTitle("Energy [keV]");
   h_edep->GetYaxis()->SetTitle("Counts [renormalized]");
 
-  TFile * outfile = new TFile(outfilename.c_str(),"RECREATE");
-  h_edep->Write();
-  outfile->Close();
+  // TFile * outfile = new TFile(outfilename.c_str(),"RECREATE");
+  // h_edep->Write();
+  // outfile->Close();
   return ;
 }

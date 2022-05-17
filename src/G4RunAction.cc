@@ -4,8 +4,6 @@
 
 G4LBCRunAction::G4LBCRunAction() : G4UserRunAction()
 {
-  //
-
   fAnalysisManager = G4AnalysisManager::Instance();
 
   fAnalysisManager->SetVerboseLevel(1);
