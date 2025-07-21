@@ -688,7 +688,7 @@ G4double fDistance = 5*cm;
   // Visualization Attributes
   /////////////////////////////////////////////////////////////////////////////
 
-  logicalWorld->SetVisAttributes(G4VisAttributes::Invisible);
+  logicalWorld->SetVisAttributes(G4VisAttributes::GetInvisible());
 
   // LBC Assembly
   logical_HermeticSeal->SetVisAttributes(new G4VisAttributes(G4Colour(102.0/255, 103.0/255, 105.0/255, 1)));
